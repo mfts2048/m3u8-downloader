@@ -9,6 +9,21 @@
     "ncu": "ncu -u",
     "build": "tsup --config ./tsup.config.ts"
   },
+  "author": {
+    "name": "mfts2048",
+    "email": "18267094443@163.com"
+  },
+  "license": "license",
+  "description": "nodejs m3u8 download",
+  "keywords": [
+    "m3u8",
+    "download",
+    "ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mfts2048/m3u8-downloader.git"
+  },
   "dependencies": {
     "@supercharge/promise-pool": "^2.4.0",
     "download": "^8.0.0",
