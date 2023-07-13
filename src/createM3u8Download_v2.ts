@@ -10,7 +10,7 @@ export async function createM3u8Download_v2(uid: string) {
   fileContent_json._url = fileContent_json._url.replace('newindex.m3u8', 'index.m3u8')
 
   return new Promise<void>((resolve, reject) => {
-    const cmd = `ffmpeg -i '${fileContent_json._url}' ${_ctx.filepath_mp4}`
+    const cmd = `ffmpeg -i ${fileContent_json._url} ${_ctx.filepath_mp4}`
     exec(cmd, (err: any, stdout: any, stderr: any) => {
       if (err) {
         console.error(err)

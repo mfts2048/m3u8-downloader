@@ -12,13 +12,19 @@ import ProgressBar from 'progress'
 import { createContext } from './init'
 
 export async function createM3u8Download_v1(uid: string) {
+  console.log('服务初始化中...')
+  console.time('服务初始化耗时')
   const _ctx = await createContext(uid)
+  console.log('服务初始化结束')
+  console.timeEnd('服务初始化耗时')
 
   const bar = new ProgressBar('[:bar] :current/:total :percent :etas', {
     total: _ctx.segments.length,
     width: 20,
   })
 
+  console.log('文件下载中...')
+  console.time('文件下载耗时')
   const { errors, results } = await PromisePool
     .for(_ctx.segments)
     .withConcurrency(_ctx.concurrency)
@@ -49,6 +55,9 @@ export async function createM3u8Download_v1(uid: string) {
     })
 
   if (errors.length === 0) {
+    console.log('文件下载完毕')
+    console.timeEnd('文件下载耗时')
+
     await writeFile(
       _ctx.filepath_merge_temp,
       results.filter(Boolean).map(url => `file '${url as string}'`).join('\r'),
