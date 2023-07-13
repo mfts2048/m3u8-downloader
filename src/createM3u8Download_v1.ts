@@ -58,6 +58,8 @@ export async function createM3u8Download_v1(uid: string) {
     console.log('文件下载完毕')
     console.timeEnd('文件下载耗时')
 
+    if (existsSync(_ctx.filepath_mp4)) return _ctx.filepath_mp4
+
     await writeFile(
       _ctx.filepath_merge_temp,
       results.filter(Boolean).map(url => `file '${url as string}'`).join('\r'),
